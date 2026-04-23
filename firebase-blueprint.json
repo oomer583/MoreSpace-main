@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User access record tied to their email and token.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "activeToken": { "type": "string" },
+        "tokenType": { "type": "string", "enum": ["free", "paid"] },
+        "expiresAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "activeToken", "expiresAt"]
+    },
+    "Token": {
+      "title": "Token",
+      "description": "Pre-generated tokens for access duration.",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "durationDays": { "type": "integer" },
+        "type": { "type": "string", "enum": ["free", "paid"] },
+        "isUsed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "durationDays", "isUsed"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User access and expiry data."
+    },
+    "/tokens/{tokenId}": {
+      "schema": "Token",
+      "description": "Registry of valid access tokens."
+    }
+  }
+}

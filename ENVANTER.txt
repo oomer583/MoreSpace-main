@@ -1,0 +1,28 @@
+# MORESPACE CANLI ENVANTER ÖZETİ
+
+BU DOSYA SİSTEMDEKİ TÜM ANAHTARLARIN VE AYARLARIN MERKEZİ KAYIT DEFTERİDİR.
+
+==================================================
+1. ERİŞİM BİLGİLERİ (GÜNCEL)
+==================================================
+ADMİN ŞİFRESİ     : J4J
+ADMİN PANELİ YOLU : Giriş ekranı -> "J4J" yazın
+
+==================================================
+2. VERİTABANI DURUMU
+==================================================
+TİP               : Cloud Firestore (Paylaşımlı)
+PROJE ID          : morespace-b1155
+DURUM             : İki servis ortak erişim sağlar.
+
+==================================================
+3. MEVCUT ANAHTARLAR (FIREBASE DİZİNİ)
+==================================================
+* Dışarıdan veya içeriden üretilen tüm anahtarlar Firebase'e kaydedilir.
+* Süresi dolan anahtarlar hem MoreSpace'ten hem de Firebase'den OTOMATİK OLARAK SİLİNİR (İmha edilir).
+
+==================================================
+4. SİSTEM TALİMATLARI
+==================================================
+- Şifre değiştirmek isterseniz .env dosyasındaki ADMIN_SECRET_PASSWORD kısmını güncelleyin.
+- Veritabanını sıfırlamak isterseniz morespace.db dosyasını silmeniz yeterlidir.
