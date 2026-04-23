@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { createServer as createViteServer } from "vite";
 import path from "path";
 import fs from "fs";
@@ -23,6 +24,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
+app.use(cors()); // Tüm originlerden gelen isteklere izin ver (EXE için gerekli)
 app.use(express.json());
 const PORT = 3000;
 

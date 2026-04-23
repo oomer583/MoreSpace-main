@@ -49,6 +49,15 @@ interface LogEntry {
   type: 'info' | 'success' | 'warning' | 'error';
 }
 
+// --- Constants ---
+
+// NOT: Buradaki URL sizin gerçek 'Shared App URL'iniz olmalıdır.
+const PROD_URL = 'https://ais-pre-7amllufbqsrzegzup4k6z5-22751828229.europe-west1.run.app';
+
+const API_BASE_URL = typeof window !== 'undefined' && (window.location.origin.includes('localhost') || window.location.origin.includes('run.app'))
+  ? '' 
+  : PROD_URL;
+
 const DIRECTORIES: Directory[] = [
   { 
     id: 'win-temp', 
@@ -108,7 +117,7 @@ const EmailGate = () => {
     setError('');
 
     try {
-      const res = await fetch('/api/access', {
+      const res = await fetch(`${API_BASE_URL}/api/access`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ keyCode })
@@ -225,7 +234,7 @@ const AdminPanel = () => {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch('/api/admin/stats');
+      const res = await fetch(`${API_BASE_URL}/api/admin/stats`);
       const data = await res.json();
       setStats(data);
     } catch (err) { console.error(err); }
@@ -233,7 +242,7 @@ const AdminPanel = () => {
 
   const generateToken = async () => {
     try {
-      const res = await fetch('/api/admin/generate-token', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/generate-token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ durationDays: tokenInput.duration, type: tokenInput.type })
@@ -400,7 +409,7 @@ const MainDashboard = () => {
     // Verify session with server strictly
     const verify = async () => {
       try {
-        const res = await fetch('/api/verify-session', {
+        const res = await fetch(`${API_BASE_URL}/api/verify-session`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ keyCode: userKey })
